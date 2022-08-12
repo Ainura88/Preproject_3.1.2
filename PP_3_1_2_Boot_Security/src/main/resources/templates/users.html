@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<h1>Users</h1>
+<br/><br/>
+<div>
+    <table border="2">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Email</th>
+        </tr>
+
+        <tr th:each="us : ${users}">
+            <td th:text="${us.id}"/>
+            <td th:text="${us.username}"/>
+            <td th:text="${us.password}"/>
+            <td th:text="${us.email}"/>
+
+            <td>
+                <a th:href="@{'admin/delete/' + ${us.id}}"  th:text="Удалить"/>
+                <a th:href="@{'admin/edit/' + ${us.id}}">Изменить</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{admin/add}">Добавить</a>
+    <br><br>
+    <li sec:authorize="isAuthenticated()" class="nav-item">
+        <form class="align-middle" th:action="@{/logout}" method="GET">
+            <div class="input-group-prepend">
+                <button class="btn btn-secondary btn-sm" type="submit">Выйти</button>
+            </div>
+        </form>
+    </li>
+</div>
+</body>
+</html>
