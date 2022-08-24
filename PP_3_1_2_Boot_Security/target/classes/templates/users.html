@@ -15,6 +15,7 @@
             <th>Name</th>
             <th>Password</th>
             <th>Email</th>
+            <th>Role</th>
         </tr>
 
         <tr th:each="us : ${users}">
@@ -22,6 +23,7 @@
             <td th:text="${us.username}"/>
             <td th:text="${us.password}"/>
             <td th:text="${us.email}"/>
+            <td th:text="${us.roles}"/>
 
             <td>
                 <a th:href="@{'admin/delete/' + ${us.id}}"  th:text="Удалить"/>

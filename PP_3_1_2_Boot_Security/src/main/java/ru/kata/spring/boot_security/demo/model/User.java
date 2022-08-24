@@ -16,7 +16,7 @@ import java.util.Collection;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "3.1.2")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

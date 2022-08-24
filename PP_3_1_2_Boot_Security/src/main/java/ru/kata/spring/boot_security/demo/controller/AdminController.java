@@ -45,7 +45,7 @@ public class AdminController {
 
     @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable(value = "id") Long id, Model model) {
-        User user = userService.getUser(id);
+        User user = userService.getById(id);
         model.addAttribute("user", user);
         return "user-edit";
     }

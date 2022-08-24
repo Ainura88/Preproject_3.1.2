@@ -9,11 +9,11 @@ public interface UserService extends UserDetailsService {
 
     List<User> getUsers();
 
-    User addUser(User user);
+    void addUser(User user);
 
     void deleteUser(Long id);
 
-    User getUser(Long id);
+    User getById(Long id);
 
     User getAuthUser();
 
