@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -37,8 +38,8 @@ public class AdminController {
         return "user-edit";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/edit")
-    public String createOrUpdateUser(@ModelAttribute User user) {
+    @PostMapping
+    public String createOrUpdateUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/admin";
     }
@@ -48,6 +49,12 @@ public class AdminController {
         User user = userService.getById(id);
         model.addAttribute("user", user);
         return "user-edit";
+    }
+
+    @RequestMapping("/{id}")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.updateUserById(user);
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "/delete/{id}")

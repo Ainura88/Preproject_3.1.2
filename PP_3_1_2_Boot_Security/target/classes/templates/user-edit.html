@@ -10,7 +10,7 @@
 <body>
 <h3 th:text="${user.id == null ? 'Добавить' : 'Изменить'}"></h3>
 <div class="container">
-  <form th:action="@{/admin/edit}"
+  <form th:action="@{/admin/{id}(id=${user.getId()})}"
         th:object="${user}" method="post" class="form-horizontal">
 
     <div style="margin-bottom: 25px" class="input-group">

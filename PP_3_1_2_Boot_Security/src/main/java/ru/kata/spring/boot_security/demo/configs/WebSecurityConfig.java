@@ -18,15 +18,12 @@ import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
-    private final UserDetailsService userDetailsService;
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailsService userDetailsService,
-                             UserService userService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImpl userService) {
         this.successUserHandler = successUserHandler;
-        this.userDetailsService = userDetailsService;
         this.userService = userService;
     }
 
@@ -52,8 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public static BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(12);
     }
 
 
